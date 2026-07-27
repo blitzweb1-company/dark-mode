@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode — Galería de Diseño</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg:#0B0D10;
+    --surface:#15181D;
+    --surface2:#1C2027;
+    --ink:#EDEFF2;
+    --muted:#8A909B;
+    --accent:#39FF88;
+    --border:#262B33;
+  }
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  nav{
+    padding:22px 0; display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid var(--border);
+  }
+  .brand{ font-weight:700; font-size:16px; display:flex; align-items:center; gap:10px; }
+  .brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent); }
+  .navlinks{ display:flex; gap:28px; list-style:none; }
+  .navlinks a{ color:var(--muted); text-decoration:none; font-size:13px; }
+  .navlinks a:hover{ color:var(--accent); }
+
+  .hero{ padding:100px 0 90px; }
+  .hero .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:20px; }
+  .hero .eyebrow::before{ content:'> '; }
+  .hero h1{ font-size:clamp(38px,6vw,62px); font-weight:700; line-height:1.1; max-width:680px; }
+  .hero p{ margin:24px 0 40px; max-width:480px; color:var(--muted); font-size:16.5px; line-height:1.65; }
+  .hero-btns{ display:flex; gap:16px; }
+
+  .btn{
+    font-family:inherit; font-size:14px; font-weight:600; padding:14px 28px; border-radius:8px;
+    cursor:pointer; transition:all .2s ease;
+  }
+  .btn-accent{ background:var(--accent); color:#04140A; border:none; }
+  .btn-accent:hover{ box-shadow:0 0 24px rgba(57,255,136,.4); }
+  .btn-outline{ background:transparent; color:var(--ink); border:1px solid var(--border); }
+  .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+
+  section{ padding:64px 0; border-top:1px solid var(--border); }
+  .section-title{ font-size:26px; font-weight:700; margin-bottom:6px; }
+  .section-sub{ color:var(--muted); font-size:14.5px; margin-bottom:40px; }
+
+  .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:26px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color:var(--accent); transform:translateY(-3px); }
+  .card .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent);
+    background:rgba(57,255,136,.1); padding:4px 10px; border-radius:6px; display:inline-block; margin-bottom:18px;
+  }
+  .card h3{ font-size:17px; font-weight:600; margin-bottom:8px; }
+  .card p{ font-size:13.5px; color:var(--muted); line-height:1.6; }
+
+  .code-panel{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+  }
+  .code-head{ padding:12px 20px; border-bottom:1px solid var(--border); display:flex; gap:8px; }
+  .code-head span{ width:11px; height:11px; border-radius:50%; }
+  .code-head .r{ background:#FF5F57; } .code-head .y{ background:#FEBC2E; } .code-head .g{ background:#28C840; }
+  .code-body{ padding:24px; font-family:'JetBrains Mono',monospace; font-size:13.5px; line-height:1.9; color:var(--muted); }
+  .code-body .kw{ color:#C792EA; } .code-body .str{ color:var(--accent); } .code-body .fn{ color:#82AAFF; }
+
+  .form-panel{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:36px;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  }
+  .field label{ display:block; font-size:12px; color:var(--muted); margin-bottom:10px; font-family:'JetBrains Mono',monospace; }
+  .field input{
+    width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+    padding:13px 14px; color:var(--ink); font-family:inherit; font-size:14px; outline:none;
+    transition:border-color .2s;
+  }
+  .field input:focus{ border-color:var(--accent); }
+
+  footer{ padding:44px 0; border-top:1px solid var(--border); display:flex; justify-content:space-between; color:var(--muted); font-size:13px; }
+
+  @media(max-width:800px){
+    .card-grid{ grid-template-columns:1fr; }
+    .form-panel{ grid-template-columns:1fr; }
+    .navlinks{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand"><span class="dot"></span>Dark Mode</div>
+    <ul class="navlinks">
+      <li><a href="#">Componentes</a></li>
+      <li><a href="#">Código</a></li>
+      <li><a href="#">Formulario</a></li>
+    </ul>
+  </nav>
+</div>
+
+<section class="hero wrap" style="border-top:none;">
+  <div class="eyebrow mono">system.theme = "dark"</div>
+  <h1>Contraste alto. Enfoque total.</h1>
+  <p>Superficies casi negras, un acento verde eléctrico y tipografía monoespaciada para el detalle técnico.</p>
+  <div class="hero-btns">
+    <button class="btn btn-accent">Iniciar sesión</button>
+    <button class="btn btn-outline">Ver documentación</button>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-title">Componentes</div>
+  <div class="section-sub">Tarjetas con borde que se ilumina al interactuar.</div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag mono">v2.1.0</span>
+      <h3>Rendimiento</h3>
+      <p>Optimizado para pantallas OLED: negros reales que ahorran batería.</p>
+    </div>
+    <div class="card">
+      <span class="tag mono">stable</span>
+      <h3>Legibilidad</h3>
+      <p>Contraste calibrado para sesiones largas frente a la pantalla.</p>
+    </div>
+    <div class="card">
+      <span class="tag mono">beta</span>
+      <h3>Acento único</h3>
+      <p>Un solo color vibrante que guía la atención sin saturar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-title">Bloque de código</div>
+  <div class="section-sub">Estética técnica que refuerza la identidad del modo oscuro.</div>
+  <div class="code-panel">
+    <div class="code-head"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="code-body">
+<span class="kw">const</span> theme = {<br>
+&nbsp;&nbsp;bg: <span class="str">'#0B0D10'</span>,<br>
+&nbsp;&nbsp;accent: <span class="str">'#39FF88'</span>,<br>
+&nbsp;&nbsp;render: <span class="fn">() =></span> ui.<span class="fn">paint</span>(theme)<br>
+};
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-title">Formulario</div>
+  <div class="section-sub">Campos con foco en verde acento y fondo elevado.</div>
+  <div class="form-panel">
+    <div class="field">
+      <label>// nombre</label>
+      <input type="text" placeholder="Jorge Viccencio">
+    </div>
+    <div class="field">
+      <label>// correo</label>
+      <input type="email" placeholder="hola@blitz.dev">
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Blitz Web Dev — 2026</span>
+  <span>Estilo 06 / 08</span>
+</footer>
+
+</body>
+</html>
